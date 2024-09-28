@@ -19,8 +19,8 @@ var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
 
-// Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlite("Data Source=auth.db"));
 
 
@@ -91,6 +91,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+IConfiguration configuration = app.Configuration;
+IWebHostEnvironment environment = app.Environment;
 
 app.MapControllers();
 

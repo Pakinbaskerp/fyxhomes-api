@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8FA67ACE-C7C5-4C70-B871-9B7B4A0CC684}|API.csproj|c:\\users\\pakinpaulraj\\documents\\projects\\api\\service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FA67ACE-C7C5-4C70-B871-9B7B4A0CC684}|API.csproj|solutionrelative:service\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8FA67ACE-C7C5-4C70-B871-9B7B4A0CC684}|API.csproj|c:\\users\\pakinpaulraj\\documents\\projects\\api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8FA67ACE-C7C5-4C70-B871-9B7B4A0CC684}|API.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 843,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,20 +30,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Controllers\\AccountController.cs*",
-              "RelativeToolTip": "Controllers\\AccountController.cs*",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwB0AAAAcAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAowDAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T18:24:49.585Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AccountRepository.cs",
               "DocumentMoniker": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Repository\\AccountRepository.cs",
               "RelativeDocumentMoniker": "Repository\\AccountRepository.cs",
@@ -48,6 +52,19 @@
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T18:24:53.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Service\\AccountService.cs",
+              "RelativeDocumentMoniker": "Service\\AccountService.cs",
+              "ToolTip": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\Service\\AccountService.cs",
+              "RelativeToolTip": "Service\\AccountService.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAnwGwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-28T18:44:24.704Z",
               "EditorCaption": ""
             }
           ]

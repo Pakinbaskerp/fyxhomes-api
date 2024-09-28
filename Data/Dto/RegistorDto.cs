@@ -10,7 +10,7 @@ namespace API.Data.Dto
         [Required]
         public string FirstName { get; set; }
         public string LastName { get; set;}
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Required]
         public string Password { get; set; }
         // public List<string> Roles { get; set;}

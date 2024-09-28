@@ -7,5 +7,7 @@ namespace API.Contract.IService
         string CreateNewRegistor(RegistorDto user);
         bool CheckEmailExist(string email);
 
+        Task<AuthResponseDto> LoginWithUser(LoginDto loginDto);
+
     }
 }

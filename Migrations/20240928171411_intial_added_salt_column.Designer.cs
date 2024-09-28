@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240926160535_intial")]
-    partial class intial
+    [Migration("20240928171411_intial_added_salt_column")]
+    partial class intial_added_salt_column
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,9 +55,9 @@ namespace API.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("is_active");
 
-                    b.Property<bool>("IsEmailVerifed")
+                    b.Property<bool>("IsEmailVerified")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("is_email_verifed");
+                        .HasColumnName("is_email_verified");
 
                     b.Property<bool>("IsMobileNumberVerified")
                         .HasColumnType("INTEGER")
@@ -73,9 +73,15 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("password");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("INTEGER")
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
                         .HasColumnName("phone_number");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("salt");
 
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("TEXT")
