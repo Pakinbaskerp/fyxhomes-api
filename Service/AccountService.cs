@@ -94,13 +94,14 @@ namespace API.Service
             var subject = new ClaimsIdentity(new[]
                             {
                             new Claim(JwtRegisteredClaimNames.Sub, user.FirstName),
+                            new Claim("userId", user.id.ToString()),
                             new Claim(JwtRegisteredClaimNames.Email, user.Email),
                             });
             var expires = DateTime.UtcNow.AddMinutes(10);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = subject,
-                Expires = DateTime.UtcNow.AddMinutes(10),
+                Expires = expires,
                 Issuer = issuer,
                 Audience = audience,
                 SigningCredentials = signingCredentials

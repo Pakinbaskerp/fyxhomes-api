@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using API.Contract.IRepository;
 using API.Contract.IService;
 using API.Data.Dto;
@@ -54,6 +55,18 @@ namespace API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("api/profile/update")]
+        public async Task<IActionResult> UpdateProfile(UpdateProfileDto updateProfileeDto){
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
+
+             string userId = User.FindFirst("userId")?.Value;
+            
+            return Ok(userId);
         }
     }
 }

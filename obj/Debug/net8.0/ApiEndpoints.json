@@ -1,8 +1,24 @@
 [
   {
     "ContainingType": "API.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "API.Data.Dto.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AccountController",
     "Method": "Register",
-    "RelativePath": "api/account/register",
+    "RelativePath": "api/auth/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -17,15 +33,15 @@
   },
   {
     "ContainingType": "API.Controllers.AccountController",
-    "Method": "Login",
-    "RelativePath": "api/auth/login",
-    "HttpMethod": "POST",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/profile/update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "loginDto",
-        "Type": "API.Data.Dto.LoginDto",
+        "Name": "updateProfileeDto",
+        "Type": "API.Data.Dto.UpdateProfileDto",
         "IsRequired": true
       }
     ],
