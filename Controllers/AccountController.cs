@@ -59,14 +59,15 @@ namespace API.Controllers
 
         [HttpPut]
         [Route("api/profile/update")]
-        public async Task<IActionResult> UpdateProfile(UpdateProfileDto updateProfileeDto){
-            if(!ModelState.IsValid){
-                return BadRequest(ModelState);
-            }
-
-             string userId = User.FindFirst("userId")?.Value;
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto updateProfileDto){
             
-            return Ok(userId);
+
+             Guid userId =Guid.Parse(User.FindFirst("userId")?.Value);
+
+            var user =  _accountService.UpdateUserProfile(userId, updateProfileDto);
+
+            
+            return Ok(user);
         }
     }
 }

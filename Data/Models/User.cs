@@ -19,7 +19,7 @@ namespace API.Data.Models
         public bool IsEmailVerified { get; set; }
         public bool IsMobileNumberVerified { get; set; }
 
-        public UserLock UserLockId { get; set; }
+        public Guid UserLockId { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
         

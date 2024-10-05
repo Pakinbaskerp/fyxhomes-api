@@ -8,6 +8,9 @@ namespace API.Contract.IService
         bool CheckEmailExist(string email);
 
         Task<AuthResponseDto> LoginWithUser(LoginDto loginDto);
+        Guid UpdateUserProfile(Guid userId,UpdateProfileDto updateProfileDto);
+
+
 
     }
 }

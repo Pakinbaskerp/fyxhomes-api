@@ -47,8 +47,17 @@ namespace API.Service
                 Password = hashedPassword,
                 Salt = salt
             };
-
             _repoWrapper.User.Create(newUser);
+            UserLock userLock = new UserLock
+            {
+                UserId = newUser.Id,
+                FailedLogInCount = 0,
+                IsLocked = false
+            };
+            _repoWrapper.UserLock.Create(userLock);
+
+            newUser.UserLockId = userLock.Id;
+
             _repoWrapper.Save();
 
             return newUser.Email;
@@ -60,15 +69,45 @@ namespace API.Service
 
         public async Task<AuthResponseDto> LoginWithUser(LoginDto loginDto)
         {
-            var user = _repoWrapper.User.FindFirstByCondition(x => x.Email.Equals(loginDto.Email));
-            if (user is null || !_passwordHasherService.VerifyPassword(loginDto.Password, user.Salt, user.Password))
+            User user = _repoWrapper.User.FindFirstByCondition(x => x.Email.Equals(loginDto.Email));
+            if (user is null)
             {
                 return new AuthResponseDto
                 {
                     IsSuccess = false,
-                    message = "User is not valid"
+                    message = "User does not exist"
                 };
             }
+
+            UserLock userLock = _repoWrapper.UserLock.FindFirstByCondition(x => x.IsActive && x.UserId.Equals(user.Id));
+            if (userLock.IsLocked)
+            {
+
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    message = "User account is locked"
+                };
+            }
+
+            if (!_passwordHasherService.VerifyPassword(loginDto.Password, user.Salt, user.Password))
+            {
+                int userLockCount = userLock.FailedLogInCount+1;
+                userLock.FailedLogInCount = userLockCount;
+                if(userLock.FailedLogInCount > 5){
+                    userLock.IsLocked = true;
+                }
+
+                _repoWrapper.UserLock.Update(userLock);
+                _repoWrapper.Save();
+
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    message = "Invalid password"
+                };
+            }
+
             string token = GenerateToken(loginDto.Email);
 
             return new AuthResponseDto
@@ -77,6 +116,32 @@ namespace API.Service
                 Token = token,
                 message = "Login successful"
             };
+        }
+
+        public Guid UpdateUserProfile(Guid userId, UpdateProfileDto updateProfileDto)
+        {
+            User user = _repoWrapper.User.FindByCondition(x => x.IsActive && x.Id.Equals(userId)).FirstOrDefault();
+            if (user != null)
+            {
+                if (updateProfileDto.Email != null)
+                {
+                    user.Email = updateProfileDto.Email;
+                }
+                if (updateProfileDto.FirstName != null)
+                {
+                    user.FirstName = updateProfileDto.FirstName;
+                }
+                if (updateProfileDto.LastName != null)
+                {
+                    user.LastName = updateProfileDto.LastName;
+
+                }
+
+
+            }
+            _repoWrapper.User.Update(user);
+            _repoWrapper.Save();
+            return user.Id;
         }
 
         public string GenerateToken(string userId)
@@ -94,7 +159,7 @@ namespace API.Service
             var subject = new ClaimsIdentity(new[]
                             {
                             new Claim(JwtRegisteredClaimNames.Sub, user.FirstName),
-                            new Claim("userId", user.id.ToString()),
+                            new Claim("userId", user.Id.ToString()),
                             new Claim(JwtRegisteredClaimNames.Email, user.Email),
                             });
             var expires = DateTime.UtcNow.AddMinutes(10);

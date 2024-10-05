@@ -16,10 +16,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRepositoryAsset, RepositoryAsset>();
+builder.Services.AddScoped<IRepositoryCategory, RepositoryCategory>();
+builder.Services.AddScoped<IRepositoryPriceCatalogue, RepositoryPriceCatalogue>();
+builder.Services.AddScoped<IRepositoryServices, RepositoryServices>();
+builder.Services.AddScoped<IEmailExtractorService, EmailExtractorService>();
 builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlite("Data Source=auth.db"));
 

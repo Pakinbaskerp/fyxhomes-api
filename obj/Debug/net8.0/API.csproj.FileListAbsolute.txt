@@ -140,3 +140,11 @@ C:\Users\PakinPaulRaj\Documents\Projects\API\obj\Debug\net8.0\refint\API.dll
 C:\Users\PakinPaulRaj\Documents\Projects\API\obj\Debug\net8.0\API.pdb
 C:\Users\PakinPaulRaj\Documents\Projects\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\PakinPaulRaj\Documents\Projects\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\RBush.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\PakinPaulRaj\Documents\Projects\API\bin\Debug\net8.0\System.IO.Packaging.dll

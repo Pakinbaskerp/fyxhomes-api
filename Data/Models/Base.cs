@@ -6,7 +6,7 @@ namespace API.Data.Models
     public class Base
     {
         [Key]
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
 

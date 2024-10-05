@@ -4,7 +4,12 @@ namespace API.Contract.IRepository
 {
     public interface IRepositoryWrapper
     {
-        IAccountRepository User { get;}
+        IUserRepository User { get;}
+        IUserLockRepository UserLock {get;}
+         IRepositoryAsset Asset  {get;}
+        IRepositoryCategory Category  {get;}
+        IRepositoryPriceCatalogue PriceCatalogue {get;}
+        IRepositoryServices Services {get;}
 
         Task SaveAsync();
 

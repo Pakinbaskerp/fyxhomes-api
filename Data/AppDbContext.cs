@@ -18,6 +18,12 @@ namespace API.Data
         // Define DbSet properties for each of your models here.
         public DbSet<User> User { get; set; }
         public DbSet<UserLock> UserLock { get; set; }
+        public DbSet<Asset> Asset { get; set;}
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Services> Services { get; set; }
+        public DbSet<PriceCatalogue> PriceCatalogue { get; set; }
+        
+
 
         /// <summary>
         /// This method is invoked before creating tables from the model during migrations.

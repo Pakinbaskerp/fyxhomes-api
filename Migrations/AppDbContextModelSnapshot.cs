@@ -19,9 +19,204 @@ namespace API.Migrations
                 .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "8.0.8");
 
+            modelBuilder.Entity("API.Data.Models.Asset", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("file_name");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("file_path");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id")
+                        .HasName("pk_asset");
+
+                    b.ToTable("asset", "public");
+                });
+
+            modelBuilder.Entity("API.Data.Models.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("AssetId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("asset_id");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("category_name");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sort_order");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id")
+                        .HasName("pk_category");
+
+                    b.ToTable("category", "public");
+                });
+
+            modelBuilder.Entity("API.Data.Models.PriceCatalogue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("currency");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("price");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id")
+                        .HasName("pk_price_catalogue");
+
+                    b.ToTable("price_catalogue", "public");
+                });
+
+            modelBuilder.Entity("API.Data.Models.Services", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("AssetId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("asset_id");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("category_id");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid>("PriceId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("price_id");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("service_name");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sort_order");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.HasKey("Id")
+                        .HasName("pk_services");
+
+                    b.ToTable("services", "public");
+                });
+
             modelBuilder.Entity("API.Data.Models.User", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasColumnName("id");
@@ -84,7 +279,11 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("updated_by");
 
-                    b.HasKey("id")
+                    b.Property<Guid>("UserLockId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_lock_id");
+
+                    b.HasKey("Id")
                         .HasName("pk_user");
 
                     b.ToTable("user", "public");
@@ -92,7 +291,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Data.Models.UserLock", b =>
                 {
-                    b.Property<Guid>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasColumnName("id");
@@ -129,30 +328,10 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("user_id");
 
-                    b.HasKey("id")
+                    b.HasKey("Id")
                         .HasName("pk_user_lock");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasDatabaseName("ix_user_lock_user_id");
-
                     b.ToTable("user_lock", "public");
-                });
-
-            modelBuilder.Entity("API.Data.Models.UserLock", b =>
-                {
-                    b.HasOne("API.Data.Models.User", null)
-                        .WithOne("UserLockId")
-                        .HasForeignKey("API.Data.Models.UserLock", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_user_lock_user_user_id");
-                });
-
-            modelBuilder.Entity("API.Data.Models.User", b =>
-                {
-                    b.Navigation("UserLockId")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
