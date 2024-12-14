@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+*.lock
+*.log
+*.pdb
+*.cache
+.vscode/
+.idea/
+.git/
