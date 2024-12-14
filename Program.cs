@@ -44,8 +44,10 @@ builder.Services.AddScoped<IRepositoryRefreshToken, RepositoryRefreshToken>();
 builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
 
 
-builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlite("Data Source=auth.db"));
+// builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlite("Data Source=auth.db"));
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<AppUser,IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
