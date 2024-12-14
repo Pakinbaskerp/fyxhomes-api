@@ -23,7 +23,7 @@ public class RefreshTokenService : IRefreshTokenService
             Token = token,
             AccessToken = accessToken,
             IsRevoked = false,
-            ExpireTime = DateTime.Now.AddMinutes(10)
+            ExpireTime = DateTime.UtcNow.AddMinutes(10)
         };
 
         _repoWrapper.RefreshToken.Create(refreshToken);
@@ -48,7 +48,7 @@ public class RefreshTokenService : IRefreshTokenService
             throw new InvalidOperationException("Invalid or expired refresh token.");
         }
         refreshToken.AccessToken = Guid.NewGuid();
-        DateTime updatedTime = DateTime.Now.AddMinutes(1);
+        DateTime updatedTime =DateTime.UtcNow.AddMinutes(1);
         if (updatedTime > refreshToken.ExpireTime)
         {
             refreshToken.ExpireTime = updatedTime;
