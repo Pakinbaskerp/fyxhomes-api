@@ -18,14 +18,15 @@ var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:4200")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200", "https://fyxhomes.netlify.app") // Add both URLs here
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
+
+
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRepositoryAsset, RepositoryAsset>();
@@ -104,7 +105,7 @@ builder.Services.AddSwaggerGen(c=>{
 });
 
 var app = builder.Build();
-app.UseCors("AllowLocalhost");
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
