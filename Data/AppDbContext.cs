@@ -1,5 +1,6 @@
 using API.Data.Models;
 using API.Models;
+using Entities.Models;
 using Entities.Util;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,6 +23,9 @@ namespace API.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<Services> Services { get; set; }
         public DbSet<PriceCatalogue> PriceCatalogue { get; set; }
+        public DbSet<BookingDetail> BookingDetail { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
+        public DbSet<Cart> Cart { get; set; }
         
 
 

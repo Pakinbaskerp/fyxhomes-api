@@ -14,13 +14,15 @@ namespace API.Service
     {
         private readonly IRepositoryWrapper _repoWrapper;
         private readonly IPasswordHasherService _passwordHasherService;
+        private readonly IRefreshTokenService _refreshTokenService;
         private readonly IConfiguration _configuration;
 
-        public AccountService(IRepositoryWrapper repoWrapper, IPasswordHasherService passwordHasherService, IConfiguration configuration)
+        public AccountService(IRepositoryWrapper repoWrapper, IPasswordHasherService passwordHasherService, IConfiguration configuration, IRefreshTokenService refreshTokenService)
         {
             _repoWrapper = repoWrapper;
             _passwordHasherService = passwordHasherService;
             _configuration = configuration;
+            _refreshTokenService = refreshTokenService;
         }
 
         public bool CheckEmailExist(string email)
@@ -28,7 +30,7 @@ namespace API.Service
             return _repoWrapper.User.FindByCondition(x => x.Email == email).Any();
         }
 
-        public string CreateNewRegistor(RegistorDto user)
+        public string CreateNewRegistor(RegisterDto user)
         {
             if (string.IsNullOrWhiteSpace(user.Email) || !Regex.IsMatch(user.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
@@ -40,6 +42,7 @@ namespace API.Service
 
             User newUser = new User
             {
+                Id = Guid.NewGuid(),
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -47,16 +50,30 @@ namespace API.Service
                 Password = hashedPassword,
                 Salt = salt
             };
-            _repoWrapper.User.Create(newUser);
+            if (user.IsUser)
+            {
+                newUser.Role = "User";
+            }
+            else if (user.IsCarpenter)
+            {
+                newUser.Role = "Carpenter";
+            }
+            else
+            {
+                newUser.Role = "Admin";
+            }
+
+
             UserLock userLock = new UserLock
             {
+                Id = Guid.NewGuid(),
                 UserId = newUser.Id,
                 FailedLogInCount = 0,
                 IsLocked = false
             };
-            _repoWrapper.UserLock.Create(userLock);
-
             newUser.UserLockId = userLock.Id;
+            _repoWrapper.User.Create(newUser);
+            _repoWrapper.UserLock.Create(userLock);
 
             _repoWrapper.Save();
 
@@ -92,9 +109,10 @@ namespace API.Service
 
             if (!_passwordHasherService.VerifyPassword(loginDto.Password, user.Salt, user.Password))
             {
-                int userLockCount = userLock.FailedLogInCount+1;
+                int userLockCount = userLock.FailedLogInCount + 1;
                 userLock.FailedLogInCount = userLockCount;
-                if(userLock.FailedLogInCount > 5){
+                if (userLock.FailedLogInCount > 5)
+                {
                     userLock.IsLocked = true;
                 }
 
@@ -109,11 +127,14 @@ namespace API.Service
             }
 
             string token = GenerateToken(loginDto.Email);
+            string accessToken = GenerateRefreshToken(user.Id, token).ToString();
+
 
             return new AuthResponseDto
             {
                 IsSuccess = true,
                 Token = token,
+                AccessToken = accessToken,
                 message = "Login successful"
             };
         }
@@ -161,8 +182,9 @@ namespace API.Service
                             new Claim(JwtRegisteredClaimNames.Sub, user.FirstName),
                             new Claim("userId", user.Id.ToString()),
                             new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                            new Claim(ClaimTypes.Role, user.Role),
                             });
-            var expires = DateTime.UtcNow.AddMinutes(10);
+            var expires = DateTime.UtcNow.AddMinutes(100);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = subject,
@@ -176,6 +198,12 @@ namespace API.Service
             var jwtToken = tokenHandler.WriteToken(token);
             return jwtToken;
 
+        }
+        public Guid GenerateRefreshToken(Guid userId, string token)
+        {
+            Guid accessToken = Guid.NewGuid();
+            _refreshTokenService.Create(userId, token, accessToken);
+            return accessToken;
         }
 
 

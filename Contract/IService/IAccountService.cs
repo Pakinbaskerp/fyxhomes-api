@@ -4,7 +4,7 @@ namespace API.Contract.IService
 {
     public interface IAccountService
     {
-        string CreateNewRegistor(RegistorDto user);
+        string CreateNewRegistor(RegisterDto user);
         bool CheckEmailExist(string email);
 
         Task<AuthResponseDto> LoginWithUser(LoginDto loginDto);

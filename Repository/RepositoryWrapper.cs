@@ -11,15 +11,18 @@ namespace API.Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private readonly AppDbContext _appContext; // Use your DbContext (AppDbContext)
+        private readonly AppDbContext _appContext; 
         private IUserRepository _User;
         private IUserLockRepository _UserLock;
         public IRepositoryAsset _Asset;
         public IRepositoryCategory _Category;
         public IRepositoryPriceCatalogue _PriceCatalogue;
         public IRepositoryServices _Services;
+        public IRepositoryBookingDetail _BookingDetail;
+        public IRepositoryRefreshToken _RefreshToken;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
+        private IRepositoryCart _Cart;
 
         public RepositoryWrapper(AppDbContext appContext, IHttpContextAccessor httpContextAccessor, IConfiguration configuration) // Change to AppDbContext
         {
@@ -50,6 +53,17 @@ namespace API.Repository
                 }
                 return _UserLock;
 
+            }
+        }
+        public IRepositoryRefreshToken RefreshToken
+        {
+            get
+            {
+                if (_RefreshToken == null)
+                {
+                    _RefreshToken = new RepositoryRefreshToken(_appContext);
+                }
+                return _RefreshToken;
             }
         }
         public IRepositoryServices Services
@@ -98,6 +112,28 @@ namespace API.Repository
                 }
                 return _Category;
 
+            }
+        }
+        public IRepositoryBookingDetail BookingDetail
+        {
+            get
+            {
+                if (_BookingDetail == null)
+                {
+                    _BookingDetail = new RepositoryBookingDetail(_appContext);
+                }
+                return _BookingDetail;
+            }
+        }
+        public IRepositoryCart Cart
+        {
+            get
+            {
+                if (_Cart == null)
+                {
+                    _Cart = new RepositoryCart(_appContext);
+                }
+                return _Cart;
             }
         }
 

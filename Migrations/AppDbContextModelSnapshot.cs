@@ -62,6 +62,47 @@ namespace API.Migrations
                     b.ToTable("asset", "public");
                 });
 
+            modelBuilder.Entity("API.Data.Models.Cart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("service_id");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_cart");
+
+                    b.ToTable("cart", "public");
+                });
+
             modelBuilder.Entity("API.Data.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -270,6 +311,11 @@ namespace API.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("phone_number");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("role");
+
                     b.Property<string>("Salt")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -332,6 +378,89 @@ namespace API.Migrations
                         .HasName("pk_user_lock");
 
                     b.ToTable("user_lock", "public");
+                });
+
+            modelBuilder.Entity("BookingDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("BookedDate")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("booked_date");
+
+                    b.Property<Guid>("CarpenterId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("carpenter_id");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("date_updated");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_active");
+
+                    b.Property<Guid>("ServiceId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("service_id");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_by");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_booking_detail");
+
+                    b.ToTable("booking_detail", "public");
+                });
+
+            modelBuilder.Entity("Entities.Models.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("AccessToken")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("access_token");
+
+                    b.Property<DateTime>("ExpireTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("expire_time");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_revoked");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("token");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_refresh_token");
+
+                    b.ToTable("refresh_token", "public");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,6 +10,9 @@ namespace API.Contract.IRepository
         IRepositoryCategory Category  {get;}
         IRepositoryPriceCatalogue PriceCatalogue {get;}
         IRepositoryServices Services {get;}
+        IRepositoryBookingDetail BookingDetail {get;}
+        IRepositoryRefreshToken RefreshToken {get;}
+        IRepositoryCart Cart {get;}
 
         Task SaveAsync();
 

@@ -16,6 +16,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRepositoryAsset, RepositoryAsset>();
 builder.Services.AddScoped<IRepositoryCategory, RepositoryCategory>();
@@ -26,6 +37,12 @@ builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IRepositoryBookingDetail, RepositoryBookingDetail>();
+builder.Services.AddScoped<ICarpenterService, CarpenterService>();
+builder.Services.AddScoped<IRepositoryRefreshToken, RepositoryRefreshToken>();
+builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options=> options.UseSqlite("Data Source=auth.db"));
 
@@ -85,6 +102,7 @@ builder.Services.AddSwaggerGen(c=>{
 });
 
 var app = builder.Build();
+app.UseCors("AllowLocalhost");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

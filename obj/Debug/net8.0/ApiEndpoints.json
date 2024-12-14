@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "API.Controllers.BookingController",
+    "Method": "GetServiceToCartList",
+    "RelativePath": "api/add-to-cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.BookingController",
+    "Method": "AddServiceToCart",
+    "RelativePath": "api/add-to-cart/{service-id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "service-id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/auth/login",
@@ -17,6 +43,38 @@
   },
   {
     "ContainingType": "API.Controllers.AccountController",
+    "Method": "Logout",
+    "RelativePath": "api/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authResponseDto",
+        "Type": "API.Data.Dto.RefreshTokenDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AccountController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authResponseDto",
+        "Type": "API.Data.Dto.RefreshTokenDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.AccountController",
     "Method": "Register",
     "RelativePath": "api/auth/register",
     "HttpMethod": "POST",
@@ -25,10 +83,61 @@
     "Parameters": [
       {
         "Name": "user",
-        "Type": "API.Data.Dto.RegistorDto",
+        "Type": "API.Data.Dto.RegisterDto",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.BookingController",
+    "Method": "GetListOfBooking",
+    "RelativePath": "api/book",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.BookingController",
+    "Method": "CreateNewBookingWithCarpenter",
+    "RelativePath": "api/book-service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookCarpenterWithServiceDto",
+        "Type": "API.Data.Dto.BookCarpenterWithServiceDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "carpenter-id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CarpenterController",
+    "Method": "GetCarpenterBookings",
+    "RelativePath": "api/carpenter/booking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CarpenterController",
+    "Method": "GetCarpenterList",
+    "RelativePath": "api/carpenter/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -83,6 +192,79 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.Controllers.ProductController",
+    "Method": "CreateNewCategory",
+    "RelativePath": "api/product/category",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "API.Data.Dto.CategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ProductController",
+    "Method": "GetCategoryList",
+    "RelativePath": "api/product/category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ProductController",
+    "Method": "CreateNewService",
+    "RelativePath": "api/product/category/service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceDto",
+        "Type": "API.Data.Dto.ServiceDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "category-id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ProductController",
+    "Method": "GetListOfServiceByCategory",
+    "RelativePath": "api/product/category/service",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category-id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ProductController",
+    "Method": "GetListOfAllService",
+    "RelativePath": "api/product/categoryId/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.AccountController",
     "Method": "UpdateProfile",
     "RelativePath": "api/profile/update",
@@ -94,6 +276,42 @@
         "Name": "updateProfileDto",
         "Type": "API.Data.Dto.UpdateProfileDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.EmailController",
+    "Method": "SendEmail",
+    "RelativePath": "api/send-mail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailMessage",
+        "Type": "API.Data.Dto.EmailMessageDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "host",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "port",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -6,6 +6,11 @@ namespace API.Contract.IService
     {
          Guid CreateNewCategory(CategoryDto categoryDto);
          List<GetCategoryListDto> GetCategoryList();
+         Guid CreateService(ServiceDto serviceDto, Guid categoryId);
+         List<ServiceDto> GetListOfServicesByCategory(Guid categoryId);
+
+         List<GetAllServiceListDto> GetAllServices();
+        
          
     }
 }

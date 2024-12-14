@@ -22,6 +22,8 @@ namespace API.Data.Models
         public Guid UserLockId { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
+        public string Role { get; set; }
+    
         
     }
 }
