@@ -23,7 +23,7 @@ public class RefreshTokenService : IRefreshTokenService
             Token = token,
             AccessToken = accessToken,
             IsRevoked = false,
-            ExpireTime = DateTime.UtcNow.AddMinutes(10)
+            ExpireTime = DateTime.UtcNow.AddMinutes(15)
         };
 
         _repoWrapper.RefreshToken.Create(refreshToken);
@@ -42,13 +42,13 @@ public class RefreshTokenService : IRefreshTokenService
     }
     public AuthResponseDto Update(Guid accessToken)
     {
-        RefreshToken refreshToken = _repoWrapper.RefreshToken.FindFirstByCondition(x => x.AccessToken == accessToken && !x.IsRevoked && x.ExpireTime > DateTime.Now);
+        RefreshToken refreshToken = _repoWrapper.RefreshToken.FindFirstByCondition(x => x.AccessToken == accessToken && !x.IsRevoked && x.ExpireTime > DateTime.UtcNow);
         if (refreshToken == null)
         {
             throw new InvalidOperationException("Invalid or expired refresh token.");
         }
         refreshToken.AccessToken = Guid.NewGuid();
-        DateTime updatedTime =DateTime.UtcNow.AddMinutes(1);
+        DateTime updatedTime =DateTime.UtcNow.AddMinutes(15);
         if (updatedTime > refreshToken.ExpireTime)
         {
             refreshToken.ExpireTime = updatedTime;
