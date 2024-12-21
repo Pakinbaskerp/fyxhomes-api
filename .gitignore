@@ -17,6 +17,7 @@ bin/
 obj/
 
 # User-specific files
+*.db
 *.user
 *.rsuser
 *.suo
