@@ -29,6 +29,6 @@ namespace API.Data.Dto
         public bool IsUser { get; set; }
 
         [DataMember(Name = "is_carpenter")]
-        public bool IsCarpenter { get; set; }
+        public bool IsCarpender { get; set; }
     }
 }

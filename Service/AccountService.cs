@@ -54,7 +54,7 @@ namespace API.Service
             {
                 newUser.Role = "User";
             }
-            else if (user.IsCarpenter)
+            else if (user.IsCarpender)
             {
                 newUser.Role = "Carpenter";
             }

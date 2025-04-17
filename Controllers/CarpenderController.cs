@@ -26,8 +26,8 @@ namespace API.Controllers
         public IActionResult GetCarpenterBookings(){
             Guid userId =Guid.Parse(User.FindFirst("userId")?.Value);
             return Ok(_carpenterService.GetListOfBookings(userId));
-
         } 
+
         
     }
 }

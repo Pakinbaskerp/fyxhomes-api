@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\API.csproj": {}
+    "C:\\Users\\PakinPaulRaj\\Desktop\\Projects\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\API.csproj": {
+    "C:\\Users\\PakinPaulRaj\\Desktop\\Projects\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\PakinPaulRaj\\Desktop\\Projects\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\API.csproj",
+        "projectPath": "C:\\Users\\PakinPaulRaj\\Desktop\\Projects\\API\\API.csproj",
         "packagesPath": "C:\\Users\\PakinPaulRaj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PakinPaulRaj\\Documents\\Projects\\API\\obj\\",
+        "outputPath": "C:\\Users\\PakinPaulRaj\\Desktop\\Projects\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PakinPaulRaj\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\PakinPaulRaj\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -63,20 +61,16 @@
               "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[9.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -106,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
